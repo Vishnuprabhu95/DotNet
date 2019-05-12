@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assert = NUnit.Framework.Assert;
+
 namespace testing
 {
     [TestClass]
@@ -16,22 +18,36 @@ namespace testing
     {
         IWebDriver driver;
 
-        [SetUp]
-        public void startBrowser()
-        {
-            driver = new ChromeDriver();
-        }
-
+        
         [Test]
         public void test()
         {
+            driver = new ChromeDriver();
             driver.Url = "http://www.yahoo.co.in";
-        }
-
-        [TearDown]
-        public void closeBrowser()
-        {
             driver.Close();
         }
+
+        [Test]
+
+        public void GoogleTest()
+
+        {
+            driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://www.google.com");
+
+            driver.FindElement(By.Name("q")).SendKeys("Selenium");
+
+            System.Threading.Thread.Sleep(5000);
+
+            driver.FindElement(By.Name("btnK")).Click();
+
+            driver.Close();
+
+        }
+
+
+
+        
+
     }
 }
