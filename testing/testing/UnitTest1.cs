@@ -15,10 +15,26 @@ namespace testing
     {
         IWebDriver driver;
 
+
+
+        string EnvBrw = System.Environment.GetEnvironmentVariable("Browser");
+
+
+
+
+
         [SetUp]
         public void startBrowser()
         {
-            driver = new ChromeDriver();
+            if(EnvBrw.Equals("Chrome"))
+            {
+                driver = new ChromeDriver();
+            }
+            else if (EnvBrw.Equals("Firefox"))
+            {
+                driver = new FirefoxDriver();
+            }
+            
         }
 
         [Test]
